@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GeoCoins Dashboard</title>
+
+  <!-- Fonte Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">
+      <span>📈</span>
+      <h1>GeoCoins Dashboard</h1>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- COTAÇÕES EM TEMPO REAL -->
+    <section class="card-box">
+      <h2>Cotações em Tempo Real</h2>
+      <div class="cards-grid" id="cards-container">
+
+        <div class="card" id="card-usd">
+          <div class="card-header">
+            <span class="moeda-title">USD / BRL</span>
+            <span class="badge" id="badge-usd">--</span>
+          </div>
+          <div class="card-body">
+            <p class="valor" id="val-usd">Carregando...</p>
+            <span class="subtext">Dólar Americano</span>
+          </div>
+        </div>
+
+        <div class="card" id="card-eur">
+          <div class="card-header">
+            <span class="moeda-title">EUR / BRL</span>
+            <span class="badge" id="badge-eur">--</span>
+          </div>
+          <div class="card-body">
+            <p class="valor" id="val-eur">Carregando...</p>
+            <span class="subtext">Euro</span>
+          </div>
+        </div>
+
+        <div class="card" id="card-btc">
+          <div class="card-header">
+            <span class="moeda-title">BTC / BRL</span>
+            <span class="badge" id="badge-btc">--</span>
+          </div>
+          <div class="card-body">
+            <p class="valor" id="val-btc">Carregando...</p>
+            <span class="subtext">Bitcoin</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SIMULADOR E ALERTAS -->
+    <div class="grid-two-columns">
+
+      <!-- SIMULADOR DE CONVERSÃO -->
+      <section class="card-box">
+        <h2>Simulador de Conversão</h2>
+        <form id="simulador-form" class="form-layout">
+          <div class="form-group">
+            <label for="valor-input">Valor a Converter</label>
+            <input type="number" id="valor-input" placeholder="Ex: 100.00" step="0.01" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="moeda-origem">De (Origem):</label>
+              <select id="moeda-origem">
+                <option value="USD">USD - Dólar Americano</option>
+                <option value="EUR">EUR - Euro</option>
+                <option value="BRL">BRL - Real Brasileiro</option>
+                <option value="GBP">GBP - Libra Esterlina</option>
+                <option value="JPY">JPY - Iene Japonês</option>
+                <option value="BTC">BTC - Bitcoin</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="moeda-destino">Para (Destino):</label>
+              <select id="moeda-destino">
+                <option value="BRL" selected>BRL - Real Brasileiro</option>
+                <option value="USD">USD - Dólar Americano</option>
+                <option value="EUR">EUR - Euro</option>
+                <option value="GBP">GBP - Libra Esterlina</option>
+                <option value="BTC">BTC - Bitcoin</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary">Calcular Conversão</button>
+        </form>
+
+        <div id="resultado-conversao" class="resultado-box">
+          <span class="resultado-texto" id="texto-resultado">Insira os valores para simular</span>
+        </div>
+      </section>
+
+      <!-- ALERTAS DE PREÇO -->
+      <section class="card-box">
+        <h2>Configurar Alerta de Preço</h2>
+        <form id="alerta-form" class="form-layout">
+          <div class="form-group">
+            <label for="alerta-moeda">Par de Moedas</label>
+            <select id="alerta-moeda">
+              <option value="USD-BRL">USD / BRL (Dólar)</option>
+              <option value="EUR-BRL">EUR / BRL (Euro)</option>
+              <option value="BTC-BRL">BTC / BRL (Bitcoin)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="alerta-limite">Valor Limite (Trigger)</label>
+            <input type="number" id="alerta-limite" placeholder="Ex: 5.50" step="0.01" required>
+          </div>
+
+          <button type="submit" class="btn-secondary">Definir Alerta</button>
+        </form>
+      </section>
+
+    </div>
+
+    <!-- GRÁFICO HISTÓRICO -->
+    <section class="card-box">
+      <h2>Histórico e Tendências</h2>
+      <div class="chart-wrapper">
+        <canvas id="meuGrafico"></canvas>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
